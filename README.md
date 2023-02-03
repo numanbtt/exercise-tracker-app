@@ -25,6 +25,11 @@ Exercise Tracker App
 19. Suggest online trainers and gyms in nearby areas.
 20. Workout options
 21. Can be converted into ecommerce store later on and dashboard comes free with it
+22. Ability to upload pics with date for future comparison and to check progress.
+23. Cursor animation (a circle following the mouse)
+24. Zoom in animation while scrolling down
+25. Parallax zoom effect.
+26. A blog can be added
 
 # API for calories burnt and food calories calculator.
 
