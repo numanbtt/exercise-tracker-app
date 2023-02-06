@@ -3,7 +3,7 @@ import React from "react";
 const HeroSection = () => {
 	return (
 		<div className="h-screen">
-			<div className="h-screen athletebg bg-cover bg-right-top md:bg-center">
+			<div className="h-full athletebg bg-cover bg-right-top md:bg-center">
 				<div className="h-full bg-black bg-transparent bg-gradient-to-t from-black to-transparent">
 					<div className="h-full bg-black bg-transparent bg-gradient-to-r from-black to-transparent flex flex-col justify-center">
 						<h1 className="lg:text-8xl md:text-7xl text-6xl text-white p-5 font-extrabold">

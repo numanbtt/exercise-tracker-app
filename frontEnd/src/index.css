@@ -5,11 +5,14 @@
 .smokeBG {
 	background-image: url("./smokebg.jpg");
 }
-
 .athletebg {
-	background-image: url("./athlete.jpg");
+	background-image: url("../public/athlete.jpg");
+	@apply bg-center bg-cover;
 }
-
+.numanbg {
+	background-image: url("../public/numan.jpg");
+	@apply bg-center bg-cover;
+}
 .bgimage {
 	background-image: url("./bg.jpg");
 	@apply bg-cover bg-center w-full;
@@ -26,4 +29,5 @@
 .glassmorphism {
 	@apply bg-opacity-10 bg-clip-padding backdrop-blur-lg backdrop-filter bg-white;
 }
+
 @tailwind utilities;
