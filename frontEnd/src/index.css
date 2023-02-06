@@ -1,3 +1,33 @@
+* {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.smokeBG {
+	background-image: url("./smokebg.jpg");
+}
+.athletebg {
+	background-image: url("../public/athlete.jpg");
+	@apply bg-center bg-cover;
+}
+.numanbg {
+	background-image: url("../public/numan.jpg");
+	@apply bg-center bg-cover;
+}
+.bgimage {
+	background-image: url("./bg.jpg");
+	@apply bg-cover bg-center w-full;
+}
+
+.aboutimage {
+	background-image: url("./about.png");
+	@apply bg-center bg-cover;
+}
+
 @tailwind base;
 @tailwind components;
+
+.glassmorphism {
+	@apply bg-opacity-10 bg-clip-padding backdrop-blur-lg backdrop-filter bg-white;
+}
+
 @tailwind utilities;
