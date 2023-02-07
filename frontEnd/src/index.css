@@ -6,11 +6,11 @@
 	background-image: url("./smokebg.jpg");
 }
 .athletebg {
-	background-image: url("../public/athlete.jpg");
+	background-image: url("./athlete.jpg");
 	@apply bg-center bg-cover;
 }
 .numanbg {
-	background-image: url("../public/numan.jpg");
+	background-image: url("./numan.jpg");
 	@apply bg-center bg-cover;
 }
 .bgimage {
@@ -21,6 +21,10 @@
 .aboutimage {
 	background-image: url("./about.png");
 	@apply bg-center bg-cover;
+}
+
+.dashboardbg {
+	background-image: url("./dashboardbg.jpg");
 }
 
 @tailwind base;
