@@ -26,4 +26,10 @@ mongoose
 	});
 
 // Import and use body-parser to handle data in database
-app.use(express.json());
+// app.use(express.json());
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+
+// Import User Controller/Router
+const userController = require("./routes/userRoute");
+app.use("/users", userController);

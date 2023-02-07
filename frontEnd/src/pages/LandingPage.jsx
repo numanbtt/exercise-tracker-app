@@ -7,10 +7,10 @@ import Navbar from "../components/landingPage/Navbar";
 const LandingPage = () => {
 	return (
 		<div>
-			{/* <Navbar />
+			<Navbar />
 			<HeroSection />
 			<AppFeature />
-			<AboutUs /> */}
+			<AboutUs />
 		</div>
 	);
 };
