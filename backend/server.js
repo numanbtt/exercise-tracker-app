@@ -30,6 +30,14 @@ mongoose
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
-// Import User Controller/Router
-const userController = require("./routes/userRoute");
-app.use("/users", userController);
+// Import User Router
+const userRouter = require("./routes/userRoute");
+app.use("/users", userRouter);
+
+// Import Activity Router
+const activityRouter = require("./routes/activityRoute");
+app.use("/activities", activityRouter);
+
+// Import User Activities Router
+const userActivitiesRouter = require("./routes/userActivitiesRoutes");
+app.use("/useractivities", userActivitiesRouter);

@@ -1,8 +1,9 @@
 import React from "react";
-import AddActivity from "../components/dashboard/AddActivity";
 import NavbarDashboardHorizontal from "../components/NavbarDashboardHorizontal";
 import NavbarDashboardVertical from "../components/NavbarDashboardVertical";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PlusIcon from "../components/PlusIcon";
+import Activities from "./Activities";
 
 const Dashboard = () => {
 	return (
@@ -16,12 +17,13 @@ const Dashboard = () => {
 						<NavbarDashboardHorizontal />
 						<div className="h-[85%] flex justify-center items-center">
 							<Routes>
-								<Route path="/activities" element={<AddActivity />} />
+								<Route path="/activities" element={<Activities />} />
 							</Routes>
 						</div>
 					</div>
 				</div>
 			</div>
+			<PlusIcon />
 		</div>
 	);
 };

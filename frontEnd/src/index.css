@@ -10,7 +10,7 @@
 	@apply bg-center bg-cover;
 }
 .numanbg {
-	background-image: url("./numan.jpg");
+	background-image: url("../public/numan.jpg");
 	@apply bg-center bg-cover;
 }
 .bgimage {
@@ -24,7 +24,11 @@
 }
 
 .dashboardbg {
-	background-image: url("./dashboardbg.jpg");
+	background-image: url("../public/dashboardbg.jpg");
+}
+.glassbg {
+	background-image: url("../public/glassbg.jpg");
+	@apply bg-center bg-cover;
 }
 
 @tailwind base;
