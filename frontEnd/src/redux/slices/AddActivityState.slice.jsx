@@ -6,7 +6,6 @@ export const addActivitySlice = createSlice({
 	reducers: {
 		addActivityState: (state) => {
 			state.isOpen = !state.isOpen;
-			console.log(state.isOpen);
 		},
 	},
 });

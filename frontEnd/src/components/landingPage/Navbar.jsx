@@ -16,7 +16,7 @@ const Navbar = () => {
 					<div className="flex justify-around items-center my-5">
 						<div>
 							<Link to="/">
-								<image src="/logo.png" alt="SpaceX Logo" className="w-48" />
+								<img src="/logo.png" alt="SpaceX Logo" className="w-48" />
 							</Link>
 						</div>
 						<RxCross2
@@ -35,9 +35,9 @@ const Navbar = () => {
 				<div className="flex justify-center">
 					<div className="bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 fixed top-5 w-[85%] rounded-lg items-center flex justify-between px-5 h-16">
 						<div className="h-full">
-							<a href="/">
+							<Link to="/">
 								<img src="/logo.png" alt="SpaceX Logo" className="h-full" />
-							</a>
+							</Link>
 						</div>
 						<div className=" hidden lg:flex items-center space-x-4">
 							<div className="h-[1.5px] w-20 bg-white"></div>
@@ -47,7 +47,7 @@ const Navbar = () => {
 							</div>
 						</div>
 						<HiMenuAlt2
-							className="text-black text-2xl font-bold lg:hidden cursor-pointer"
+							className="text-white text-2xl font-bold lg:hidden cursor-pointer"
 							onClick={changeState}
 						/>
 					</div>

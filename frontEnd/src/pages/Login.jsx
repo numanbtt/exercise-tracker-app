@@ -1,6 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { getUserData } from "../redux/slices/userData.slice";
 const Login = () => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const [loginHandle, setLoginHandle] = useState({
+		email: "",
+		password: "",
+	});
+	const loginHandler = (e) => {
+		setLoginHandle({ ...loginHandle, [e.target.name]: e.target.value });
+	};
+	const checkUserLoginDetails = async () => {
+		if (loginHandle.email === "" || loginHandle.password === "") {
+			alert("Fields are empty");
+		} else {
+			const response = await fetch("http://127.0.0.1:4000/users/login/", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(loginHandle),
+			});
+			if (response.status == 200) {
+				const responseData = await response.json();
+				console.log(responseData);
+				dispatch(getUserData(responseData));
+				// Move user to "/dashboard"
+				navigate("/dashboard/activities");
+			} else if (response.status == 400) {
+				const responseData = await response.json();
+				alert(responseData.message);
+			}
+		}
+	};
 	return (
 		<div className="h-screen flex justify-center items-center">
 			<div className="space-y-2  lg:w-[30%] md:w-[50%] sm:w-[70%] w-[80%]">
@@ -14,25 +47,30 @@ const Login = () => {
 					name="email"
 					className="form-input rounded-md w-full h-12"
 					required
-					placeholder="Email or User Name"
+					placeholder="Email"
+					onChange={loginHandler}
+					value={loginHandle.email}
 				/>
 				<br />
 				<label htmlFor="password"></label>
 
 				<input
-					type="text"
+					type="password"
 					name="password"
 					className="form-input rounded-md w-full h-12"
 					required
 					placeholder="Password"
+					onChange={loginHandler}
+					value={loginHandle.password}
 				/>
 				<br />
 				<div className="flex justify-center">
-					<Link to="/dashboard">
-						<button className="px-7 rounded-md py-2 bg-black text-white">
-							Login
-						</button>
-					</Link>
+					<button
+						className="px-7 rounded-md py-2 bg-black text-white"
+						onClick={checkUserLoginDetails}
+					>
+						Login
+					</button>
 				</div>
 			</div>
 		</div>
