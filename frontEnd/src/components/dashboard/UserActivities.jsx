@@ -1,35 +1,103 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { AiOutlineTable } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
+import { addActivityState } from "../../redux/slices/AddActivityState.slice";
+import AddNewActivityCard from "./AddNewActivityCard";
+import { setUpdateState } from "../../redux/slices/userActivityUpdate.slice";
 
 const UserActivities = () => {
-	const dispatch = useDispatch();
-	const userActivities = useSelector(
-		(state) => state.userActivities.userActivity
+	var isOpen = useSelector((state) => state.addActivityModal.isOpen);
+	var userID = useSelector((state) => state.userData.userID);
+	var isUpdating = useSelector(
+		(state) => state.isUpdating.userActivityUpdateID
 	);
-	console.log(userActivities[0].startTime);
+	var dispatch = useDispatch();
+
+	const [userActivities, setUserActivities] = useState([]);
+	const getUserActivities = async () => {
+		var data = await fetch(`http://127.0.0.1:4000/useractivities/${userID}`);
+		data = await data.json();
+		setUserActivities(data);
+	};
+
+	const deleteUserActivities = async (id) => {
+		console.log(id);
+		await fetch(`http://127.0.0.1:4000/useractivities/${id}`, {
+			method: "Delete",
+		});
+		getUserActivities();
+	};
+
+	useEffect(() => {
+		getUserActivities();
+	}, [userActivities]);
+
 	return (
 		<>
-			<table cellPadding={10}>
-				<tbody>
-					<tr>
-						<th className="px-3 py-2 text-left">Activity</th>
-						<th className="px-3 py-2 text-left">Start Time</th>
-						<th className="px-3 py-2 text-left">Duration</th>
-						<th className="px-3 py-2 text-left">Date</th>
-						<th className="px-3 py-2 text-left">Calories Burn</th>
-					</tr>
-					{userActivities.map((element, index) => {
-						return (
-							<tr key={index}>
-								<td>{element.activity}</td>
-								<td>{element.startTime}</td>
-								<td>{element.duration}</td>
-								<td>{element.date}</td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</table>
+			<div className="flex justify-end m-2 items-center space-x-5 px-2">
+				<div className="flex justify-center items-center space-x-3 ">
+					{/* <div>
+						<BsFillGrid3X3GapFill className="text-white text-xl" />
+					</div> */}
+					<div>
+						<AiOutlineTable className="text-white text-2xl" />
+					</div>
+				</div>
+				<div
+					className="rounded-lg px-5 py-2 bg-white text-black cursor-pointer font-semibold hover:scale-105 transition duration-300"
+					onClick={() => {
+						getUserActivities();
+						dispatch(addActivityState());
+					}}
+				>
+					Add Activity
+				</div>
+			</div>
+			<div className="flex flex-row justify-center w-full p-2">
+				<table className="table-auto glassmorphism bg-opacity-60">
+					<tbody>
+						<tr className="bg-white text-black bg-opacity-80 font-sans">
+							<th className="px-5 py-2 text-center">Activity</th>
+							<th className="px-5 py-2 text-center">Start Time</th>
+							<th className="px-5 py-2 text-center">Duration</th>
+							<th className="px-5 py-2 text-center">Date</th>
+							<th className="px-5 py-2 text-center">Calories Burn</th>
+							<th className="px-5 py-2 text-center"></th>
+						</tr>
+						{userActivities.map((element, index) => {
+							return (
+								<tr key={index} className=" text-gray-700">
+									<td className="px-5 py-2 text-center">{element.activity}</td>
+									<td className="px-5 py-2 text-center">{element.startTime}</td>
+									<td className="px-5 py-2 text-center">{element.duration}</td>
+									<td className="px-5 py-2 text-center">{`${element.date}`}</td>
+									<td className="px-5 py-2 text-center">{element.duration}</td>
+									<td className=" px-5 py-2 flex justify-center space-x-5 items-center">
+										<AiOutlineEdit
+											onClick={() => {
+												console.log("clicked");
+												dispatch(setUpdateState(`${element._id}`));
+											}}
+											className="text-black cursor-pointer hover:scale-110 duration-300 transition"
+										/>
+										<AiOutlineDelete
+											className="text-black cursor-pointer hover:scale-110 duration-300 transition"
+											onClick={() => {
+												deleteUserActivities(element._id);
+											}}
+										/>
+									</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
+			{isOpen && <AddNewActivityCard />}
+			{isUpdating && <AddNewActivityCard />}
 		</>
 	);
 };
