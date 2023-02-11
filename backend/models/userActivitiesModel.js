@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const user = require("./userModel");
+// const user = require("./userModel");
 
 const userActivitesSchema = mongoose.Schema({
 	activity: { type: String },

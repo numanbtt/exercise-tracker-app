@@ -68,12 +68,18 @@ const UserActivities = () => {
 							<th className="px-5 py-2 text-center"></th>
 						</tr>
 						{userActivities.map((element, index) => {
+							let date = new Date(element.date);
+							let dateString = date.toLocaleDateString("default", {
+								month: "short",
+								day: "numeric",
+								year: "numeric",
+							});
 							return (
 								<tr key={index} className=" text-gray-700">
 									<td className="px-5 py-2 text-center">{element.activity}</td>
 									<td className="px-5 py-2 text-center">{element.startTime}</td>
 									<td className="px-5 py-2 text-center">{element.duration}</td>
-									<td className="px-5 py-2 text-center">{`${element.date}`}</td>
+									<td className="px-5 py-2 text-center">{dateString}</td>
 									<td className="px-5 py-2 text-center">{element.duration}</td>
 									<td className=" px-5 py-2 flex justify-center space-x-5 items-center">
 										<AiOutlineEdit
