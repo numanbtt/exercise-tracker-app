@@ -33,7 +33,7 @@ const AddNewActivityCard = () => {
 	});
 	const handler = (e) => {
 		setHandle({ ...handle, [e.target.name]: e.target.value });
-		console.table(handle);
+		// console.table(handle);
 	};
 
 	// Send and Save Data into Redux State

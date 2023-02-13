@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
+require("dotenv/config");
 
 router.get("/", async (req, res) => {
 	const user = await userModel.find();
@@ -16,8 +19,18 @@ router.post("/signup/", async (req, res) => {
 	const email = await userModel.find({ email: req.body.email });
 	if (username.length === 0 && email.length === 0) {
 		try {
-			const user = await userModel(req.body);
+			// Generate salt and merge it to password
+			// const salt = await bcrypt.genSalt();
+			// const hashPassword = await bcrypt.hash(req.body.password, salt);
+
+			// This will directly generate 10 letter salt for us
+			const hashPassword = await bcrypt.hash(req.body.password, 10);
+			const user = await userModel({ ...req.body, password: hashPassword });
 			await user.save();
+			const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+				expiresIn: "15m",
+			});
+			res.json({ jwtToken: accessToken });
 			return res.status(200).send(user);
 		} catch (error) {
 			console.log(error);
@@ -31,15 +44,18 @@ router.post("/signup/", async (req, res) => {
 router.post("/login/", async (req, res) => {
 	const findUser = await userModel.find({
 		email: req.body.email,
-		password: req.body.password,
+		// password: req.body.password,
 	});
 	if (findUser.length !== 0) {
 		try {
-			const user = await userModel.find({
-				email: req.body.email,
-				password: req.body.password,
-			});
-			return res.status(200).json(...user);
+			if (await bcrypt.compare(req.body.password, findUser[0].password)) {
+				const user = await userModel.find({
+					email: req.body.email,
+					// password: req.body.password,
+				});
+				return res.status(200).json(...user);
+				// return res.status(200);
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -68,5 +84,20 @@ router.put("/:id", async (req, res) => {
 		console.log(error);
 	}
 });
+
+const authenticateToken = (req, res) => {
+	const authHeader = req.headers["authorization"];
+	const token = authHeader && authHeader.split(" ")[1];
+	// Bearer TOKEN
+	if (token == null) {
+		return res.sendStatus(401);
+	} else {
+		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+			if (err) {
+				return res.sendStatus(403);
+			}
+		});
+	}
+};
 
 module.exports = router;

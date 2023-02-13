@@ -5,31 +5,33 @@ Exercise Tracker App
 # Dump area for ideas
 
 1. can add printable workout planner.
-2. can add calculator.
-3. Login/signup option for user
-4. Database of exercises and activities
-5. A dashboard to provide overview of progress including charts/graphs according to time, day, week, month, year
-6. Option to share post on social media too
-7. A recommendation store for relevant supplements and gym gears
-8. Blog and articles
-9. Dark theme options
-10. personalized workout app
-11. A personalized workout app that generates daily exercise routines based on user fitness level and goals.
-12. A social fitness app that connects users with friends, allowing them to track progress, compare stats, and motivate each other.
-13. A gamified fitness app that rewards users for meeting fitness goals with virtual rewards and challenges.
-14. An outdoor fitness app that uses GPS to track outdoor activities such as running, hiking, and cycling.
-15. A nutrition and exercise tracking app that creates a customized meal plan based on user's calorie intake, nutrition goals, and dietary restrictions.
-16. A mental health and fitness app that tracks mood, stress levels, and sleep, and provides tips and exercises to improve overall well-being.
-17. A wearable fitness app that syncs with fitness trackers and smartwatches to provide real-time data and insights about activity levels and health metrics.
-18. Google map api
-19. Suggest online trainers and gyms in nearby areas.
-20. Workout options
-21. Can be converted into ecommerce store later on and dashboard comes free with it
-22. Ability to upload pics with date for future comparison and to check progress.
-23. Cursor animation (a circle following the mouse)
-24. Zoom in animation while scrolling down
-25. Parallax zoom effect.
-26. A blog can be added
+2. Use safe/ crypt password using (bcrypt library)
+3. Use jwt token for session and loin authentication (jsonwebtoken library)
+4. can add calculator.
+5. Login/signup option for user
+6. Database of exercises and activities
+7. A dashboard to provide overview of progress including charts/graphs according to time, day, week, month, year
+8. Option to share post on social media too
+9. A recommendation store for relevant supplements and gym gears
+10. Blog and articles
+11. Dark theme options
+12. personalized workout app
+13. A personalized workout app that generates daily exercise routines based on user fitness level and goals.
+14. A social fitness app that connects users with friends, allowing them to track progress, compare stats, and motivate each other.
+15. A gamified fitness app that rewards users for meeting fitness goals with virtual rewards and challenges.
+16. An outdoor fitness app that uses GPS to track outdoor activities such as running, hiking, and cycling.
+17. A nutrition and exercise tracking app that creates a customized meal plan based on user's calorie intake, nutrition goals, and dietary restrictions.
+18. A mental health and fitness app that tracks mood, stress levels, and sleep, and provides tips and exercises to improve overall well-being.
+19. A wearable fitness app that syncs with fitness trackers and smartwatches to provide real-time data and insights about activity levels and health metrics.
+20. Google map api
+21. Suggest online trainers and gyms in nearby areas.
+22. Workout options
+23. Can be converted into ecommerce store later on and dashboard comes free with it
+24. Ability to upload pics with date for future comparison and to check progress.
+25. Cursor animation (a circle following the mouse)
+26. Zoom in animation while scrolling down.
+27. Parallax zoom effect.
+28. A blog can be added.
 
 # API for calories burnt and food calories calculator.
 
