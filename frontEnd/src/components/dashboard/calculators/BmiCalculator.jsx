@@ -79,10 +79,25 @@ const BMICalculator = () => {
 					</div>
 				</div>
 				<div className="col-span-3">
-					<h1 className="text-lg font-semibold underline underline-offset-4">
-						Results:
-					</h1>
-					<div>BMI: {bmi}</div>
+					<div>
+						{console.log(bmi)}
+						<h1 className="text-lg font-semibold underline underline-offset-4">
+							Results:
+						</h1>
+						<div>BMI: {bmi}</div>
+						<ul className="list-disc">
+							<li>
+								Healthy BMI range: 18.5 kg/m<sup>2</sup> - 25 kg/m<sup>2</sup>
+							</li>
+							<li>Healthy weight for the height: 128.9 lbs - 174.2 lbs</li>
+							<li>
+								Lose 45.8 lbs to reach a BMI of 25 kg/m<sup>2</sup>.
+							</li>
+							<li>
+								Ponderal Index: 17.8 kg/m<sup>3</sup>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<BMIDetails />
