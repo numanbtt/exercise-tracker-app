@@ -24,7 +24,6 @@ const Login = () => {
 			});
 			if (response.status == 200) {
 				const responseData = await response.json();
-				console.log(responseData);
 				dispatch(getUserData(responseData));
 				// Move user to "/dashboard"
 				navigate("/dashboard/activities");

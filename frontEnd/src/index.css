@@ -1,7 +1,19 @@
 * {
 	font-family: Arial, Helvetica, sans-serif;
 }
+.custom-scrollbar::-webkit-scrollbar {
+	width: 0px;
+	@apply rounded-full;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	width: 10px;
+	@apply rounded-full bg-opacity-80 bg-violet-600;
+}
 
+/* style for scrollbar track */
+.custom-scrollbar::-webkit-scrollbar-track {
+	@apply rounded-full bg-opacity-80 bg-white;
+}
 .smokeBG {
 	background-image: url("./smokebg.jpg");
 }

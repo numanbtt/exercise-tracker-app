@@ -70,8 +70,8 @@ const UserActivities = () => {
 						{userActivities.map((element, index) => {
 							let date = new Date(element.date);
 							let dateString = date.toLocaleDateString("default", {
-								month: "short",
 								day: "numeric",
+								month: "short",
 								year: "numeric",
 							});
 							return (
