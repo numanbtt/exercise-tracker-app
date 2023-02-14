@@ -33,7 +33,6 @@ const AddNewActivityCard = () => {
 	});
 	const handler = (e) => {
 		setHandle({ ...handle, [e.target.name]: e.target.value });
-		// console.table(handle);
 	};
 
 	// Send and Save Data into Redux State
@@ -83,17 +82,17 @@ const AddNewActivityCard = () => {
 			{/* {isOpen && ( */}
 			<div>
 				<div className="h-full">
-					<div className="fixed top-0 left-0 bottom-0 right-0 h-screen glassmorphism bg-opacity-40">
-						<div className="h-full  flex flex-row justify-center items-center fixed top-0 left-0 bottom-0 right-0">
-							<div className="min-h-[80vh] w-[30vw] bg-white shadow-2xl rounded-lg">
+					<div className="glassmorphism fixed top-0 left-0 bottom-0 right-0 h-screen bg-opacity-40">
+						<div className="fixed  top-0 left-0 bottom-0 right-0 flex h-full flex-row items-center justify-center">
+							<div className="min-h-[80vh] w-[30vw] rounded-lg bg-white shadow-2xl">
 								<div>
 									<img
 										src="../../mma.jpg"
 										alt=""
-										className="object-cover object-center rounded-t-lg"
+										className="rounded-t-lg object-cover object-center"
 									/>
 								</div>
-								<div className="py-2 px-5 flex justify-between items-center">
+								<div className="flex items-center justify-between py-2 px-5">
 									<h1 className="font-semibold">Select Activity</h1>
 									<select
 										className="w-48 rounded-sm"
@@ -103,7 +102,7 @@ const AddNewActivityCard = () => {
 									>
 										{activityOptions.map((element) => (
 											<option
-												className="bg-black hover:bg-blue-700 p-1 glassmorphism bg-opacity-75 rounded-md text-white"
+												className="glassmorphism rounded-md bg-black bg-opacity-75 p-1 text-white hover:bg-blue-700"
 												key={element._id}
 												value={element.activity}
 											>
@@ -113,7 +112,7 @@ const AddNewActivityCard = () => {
 									</select>
 								</div>
 								<hr />
-								<div className="py-2 px-5 flex justify-between items-center">
+								<div className="flex items-center justify-between py-2 px-5">
 									<h1 className="font-semibold">Start Time</h1>
 									<input
 										type="time"
@@ -124,10 +123,10 @@ const AddNewActivityCard = () => {
 										value={handle.startTime}
 									/>
 								</div>
-								<div className="py-2 px-5 flex justify-between items-center">
+								<div className="flex items-center justify-between py-2 px-5">
 									<div>
-										<h1 className="font-semibold text-center">Duration</h1>
-										<h1 className="text-sm text-center">(minutes)</h1>
+										<h1 className="text-center font-semibold">Duration</h1>
+										<h1 className="text-center text-sm">(minutes)</h1>
 									</div>
 									<input
 										type="number"
@@ -139,7 +138,7 @@ const AddNewActivityCard = () => {
 									/>
 								</div>
 								<hr />
-								<div className="py-2 px-5 flex justify-between items-center">
+								<div className="flex items-center justify-between py-2 px-5">
 									<h1 className="font-semibold">Date</h1>
 									<input
 										type="date"
@@ -151,9 +150,9 @@ const AddNewActivityCard = () => {
 									/>
 								</div>
 								{isOpen ? (
-									<div className="flex justify-center items-center space-x-5 my-2 mb-4">
+									<div className="my-2 mb-4 flex items-center justify-center space-x-5">
 										<button
-											className="rounded-md text-lg py-2 px-5 text-center hover:scale-105 transition duration-300 border-2 border-black bg-black text-white"
+											className="rounded-md border-2 border-black bg-black py-2 px-5 text-center text-lg text-white transition duration-300 hover:scale-105"
 											onClick={() => {
 												handle.date === "" || handle.startTime === ""
 													? alert("Enter Complete Data")
@@ -163,7 +162,7 @@ const AddNewActivityCard = () => {
 											Add Activity
 										</button>
 										<button
-											className="rounded-md text-lg py-2 px-5 text-center hover:scale-105 transition duration-300 border-black text-black border-2"
+											className="rounded-md border-2 border-black py-2 px-5 text-center text-lg text-black transition duration-300 hover:scale-105"
 											onClick={() => {
 												dispatch(addActivityState());
 											}}
@@ -172,9 +171,9 @@ const AddNewActivityCard = () => {
 										</button>
 									</div>
 								) : (
-									<div className="flex justify-center items-center space-x-5 my-2 mb-4">
+									<div className="my-2 mb-4 flex items-center justify-center space-x-5">
 										<button
-											className="rounded-md text-lg py-2 px-5 text-center hover:scale-105 transition duration-300 border-2 border-black bg-black text-white"
+											className="rounded-md border-2 border-black bg-black py-2 px-5 text-center text-lg text-white transition duration-300 hover:scale-105"
 											onClick={() => {
 												handle.date === "" || handle.startTime === ""
 													? alert("Enter Complete Data")
@@ -186,7 +185,7 @@ const AddNewActivityCard = () => {
 											Update Activity
 										</button>
 										<button
-											className="rounded-md text-lg py-2 px-5 text-center hover:scale-105 transition duration-300 border-black text-black border-2"
+											className="rounded-md border-2 border-black py-2 px-5 text-center text-lg text-black transition duration-300 hover:scale-105"
 											onClick={() => {
 												// dispatch(addActivityState());
 												dispatch(setUpdateState());

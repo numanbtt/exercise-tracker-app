@@ -11,6 +11,9 @@ import PlusIcon from "../components/PlusIcon";
 import Activities from "./Activities";
 import AddActivity from "../components/dashboard/AddActivity";
 import { useSelector } from "react-redux";
+import SongsPlaylist from "./SongsPlaylist";
+import Calculators from "./Calculators";
+import Workouts from "./Workouts";
 
 const Dashboard = () => {
 	const navigate = useNavigate();
@@ -24,8 +27,8 @@ const Dashboard = () => {
 			{userID === "" ? (
 				navigate("/login")
 			) : (
-				<div className="dashboardbg bg-center bg-cover h-screen">
-					<div className="bg-black bg-opacity-5 h-full p-5">
+				<div className="dashboardbg h-screen bg-cover bg-center">
+					<div className="h-full bg-black bg-opacity-5 p-5">
 						<div className="grid grid-cols-12">
 							<div className="col-span-2">
 								<NavbarDashboardVertical />
@@ -44,7 +47,17 @@ const Dashboard = () => {
 								</div>
 								<div>
 									<Routes>
-										<Route path="/workouts" element={<Activities />} />
+										<Route path="/workouts" element={<Workouts />} />
+									</Routes>
+								</div>
+								<div>
+									<Routes>
+										<Route path="/calculators" element={<Calculators />} />
+									</Routes>
+								</div>
+								<div>
+									<Routes>
+										<Route path="/playlist" element={<SongsPlaylist />} />
 									</Routes>
 								</div>
 							</div>

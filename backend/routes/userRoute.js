@@ -27,10 +27,10 @@ router.post("/signup/", async (req, res) => {
 			const hashPassword = await bcrypt.hash(req.body.password, 10);
 			const user = await userModel({ ...req.body, password: hashPassword });
 			await user.save();
-			const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-				expiresIn: "15m",
-			});
-			res.json({ jwtToken: accessToken });
+			// const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+			// 	expiresIn: "15m",
+			// });
+			// res.json({ jwtToken: accessToken });
 			return res.status(200).send(user);
 		} catch (error) {
 			console.log(error);
@@ -85,7 +85,7 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
-const authenticateToken = (req, res) => {
+const authenticateToken = (req, res, next) => {
 	const authHeader = req.headers["authorization"];
 	const token = authHeader && authHeader.split(" ")[1];
 	// Bearer TOKEN
@@ -95,6 +95,9 @@ const authenticateToken = (req, res) => {
 		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
 			if (err) {
 				return res.sendStatus(403);
+			} else {
+				req.user = user;
+				next();
 			}
 		});
 	}

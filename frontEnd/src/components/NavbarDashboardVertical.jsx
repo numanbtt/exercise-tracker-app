@@ -9,33 +9,37 @@ import { Link } from "react-router-dom";
 const NavbarDashboardVertical = () => {
 	return (
 		<div className="h-[92vh]">
-			<div className=" glassmorphism shadow-2xl h-full w-full rounded-xl pt-2">
+			<div className=" glassmorphism h-full w-full rounded-xl pt-2 shadow-2xl">
 				<Link to="/dashboard">
-					<div className="flex flex-row justify-start items-center text-gray-200 m-4 hover:scale-105 hover:text-white duration-200 transition p-2 cursor-pointer  hover:glassmorphism hover:bg-gray-200 hover:bg-opacity-20 rounded-md space-x-2">
-						<BiHome className=" text-xl font-light ml-1" />
-						<h1 className=" font-normal text-base">Overview</h1>
+					<div className="hover:glassmorphism m-4 flex cursor-pointer flex-row items-center justify-start space-x-2 rounded-md p-2 text-gray-200 transition  duration-200 hover:scale-105 hover:bg-gray-200 hover:bg-opacity-20 hover:text-white">
+						<BiHome className=" ml-1 text-xl font-light" />
+						<h1 className=" text-base font-normal">Overview</h1>
 					</div>
 				</Link>
 				<Link to="/dashboard/activities">
-					<div className="flex flex-row justify-start items-center text-gray-200 m-4 hover:scale-105 hover:text-white duration-200 transition  p-2 cursor-pointer hover:glassmorphism hover:bg-gray-200 hover:bg-opacity-20 rounded-md space-x-2">
-						<BiRun className=" text-xl font-light ml-1" />
-						<h1 className=" font-normal text-base">Activities</h1>
+					<div className="hover:glassmorphism m-4 flex cursor-pointer flex-row items-center justify-start space-x-2 rounded-md p-2  text-gray-200 transition duration-200 hover:scale-105 hover:bg-gray-200 hover:bg-opacity-20 hover:text-white">
+						<BiRun className=" ml-1 text-xl font-light" />
+						<h1 className=" text-base font-normal">Activities</h1>
 					</div>
 				</Link>
 				<Link to="/dashboard/workouts">
-					<div className="flex flex-row justify-start items-center text-gray-200 m-4 hover:scale-105 hover:text-white duration-200 transition  p-2 cursor-pointer hover:glassmorphism hover:bg-gray-200 hover:bg-opacity-20 rounded-md space-x-2">
-						<MdOutlineFitnessCenter className=" text-xl font-light ml-1" />
-						<h1 className=" font-normal text-base">Workouts</h1>
+					<div className="hover:glassmorphism m-4 flex cursor-pointer flex-row items-center justify-start space-x-2 rounded-md p-2  text-gray-200 transition duration-200 hover:scale-105 hover:bg-gray-200 hover:bg-opacity-20 hover:text-white">
+						<MdOutlineFitnessCenter className=" ml-1 text-xl font-light" />
+						<h1 className=" text-base font-normal">Workouts</h1>
 					</div>
 				</Link>
-				<div className="flex flex-row justify-start items-center text-gray-200 m-4 hover:scale-105 hover:text-white duration-200 transition  p-2 cursor-pointer hover:glassmorphism hover:bg-gray-200 hover:bg-opacity-20 rounded-md space-x-2">
-					<HiOutlineCalculator className=" text-xl font-light ml-1" />
-					<h1 className="font-normal text-base">Calculators</h1>
-				</div>
-				<div className="flex flex-row justify-start items-center text-gray-200 m-4 hover:scale-105 hover:text-white duration-200 transition  p-2 cursor-pointer hover:glassmorphism hover:bg-gray-200 hover:bg-opacity-20 rounded-md space-x-2">
-					<AiOutlinePlayCircle className=" text-xl font-light ml-1" />
-					<h1 className="font-normal text-base">Playlist</h1>
-				</div>
+				<Link to="/dashboard/calculators">
+					<div className="hover:glassmorphism m-4 flex cursor-pointer flex-row items-center justify-start space-x-2 rounded-md p-2  text-gray-200 transition duration-200 hover:scale-105 hover:bg-gray-200 hover:bg-opacity-20 hover:text-white">
+						<HiOutlineCalculator className=" ml-1 text-xl font-light" />
+						<h1 className="text-base font-normal">Calculators</h1>
+					</div>
+				</Link>
+				<Link to="/dashboard/playlist">
+					<div className="hover:glassmorphism m-4 flex cursor-pointer flex-row items-center justify-start space-x-2 rounded-md p-2  text-gray-200 transition duration-200 hover:scale-105 hover:bg-gray-200 hover:bg-opacity-20 hover:text-white">
+						<AiOutlinePlayCircle className=" ml-1 text-xl font-light" />
+						<h1 className="text-base font-normal">Playlist</h1>
+					</div>
+				</Link>
 			</div>
 		</div>
 	);
