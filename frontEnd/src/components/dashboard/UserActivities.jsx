@@ -11,26 +11,36 @@ import { setUpdateState } from "../../redux/slices/userActivityUpdate.slice";
 const UserActivities = () => {
 	var isOpen = useSelector((state) => state.addActivityModal.isOpen);
 	var userID = useSelector((state) => state.userData.userID);
-	var accessToken = useSelector((state) => state.userData.accessToken);
+	// var accessToken = useSelector((state) => state.userData.accessToken);
 	var isUpdating = useSelector(
 		(state) => state.isUpdating.userActivityUpdateID
 	);
 	var dispatch = useDispatch();
 
 	const [userActivities, setUserActivities] = useState([]);
-	const getUserActivities = async () => {
-		var data = await fetch(
-			`http://127.0.0.1:4000/useractivities/${userID}`
-			// , {
-			// 	headers: { "auth-token": `bearer ${accessToken}` },
-			// }
-		);
-		data = await data.json();
-		setUserActivities(data);
+
+	// const getUserActivities = async (userID) => {
+	// 	const data1 = await fetch(
+	// 		`http://127.0.0.1:4000/useractivities/${userID}`
+	// 		// , {
+	// 		// 	headers: { "auth-token": `bearer ${accessToken}` },
+	// 		// }
+	// 	);
+	// 	const data = await data1.json();
+	// 	setUserActivities(data);
+	// };
+
+	const getUserActivities = () => {
+		fetch(`http://127.0.0.1:4000/useractivities/${userID}`)
+			.then((data) => {
+				return data.json();
+			})
+			.then((data) => {
+				setUserActivities(data);
+			});
 	};
 
 	const deleteUserActivities = async (id) => {
-		console.log(id);
 		await fetch(`http://127.0.0.1:4000/useractivities/${id}`, {
 			method: "Delete",
 		});
@@ -39,7 +49,7 @@ const UserActivities = () => {
 
 	useEffect(() => {
 		getUserActivities();
-	}, [userActivities]);
+	}, [userID]);
 
 	return (
 		<>
