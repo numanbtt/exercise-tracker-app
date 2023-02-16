@@ -55,7 +55,7 @@ const ProfileClick = () => {
 					<h1
 						className=" p-2 font-bold text-black"
 						onClick={() => {
-							localStorage.clear();
+							sessionStorage.clear();
 							dispatch(setProfileClickState());
 							navigate("/");
 						}}

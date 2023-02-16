@@ -37,6 +37,7 @@ route.get("/:userid", async (req, res) => {
 			})
 			.sort({ date: -1 });
 		res.send(userActivities);
+		console.log("1");
 	} catch (error) {
 		console.log(error);
 	}
