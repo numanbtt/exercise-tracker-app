@@ -6,7 +6,6 @@ export const profileClickStateSlice = createSlice({
 	reducers: {
 		setProfileClickState: (state) => {
 			state.profileClickState = !state.profileClickState;
-			console.log(state.profileClickState);
 		},
 	},
 });

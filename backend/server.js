@@ -30,6 +30,9 @@ mongoose
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
+// To show images on frontend
+app.use(express.static("assets"));
+
 // Import User Router
 const userRouter = require("./routes/userRoute");
 app.use("/users", userRouter);

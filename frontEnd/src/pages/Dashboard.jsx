@@ -28,13 +28,15 @@ const Dashboard = () => {
 				navigate("/login")
 			) : (
 				<div className="dashboardbg h-screen bg-cover bg-center">
-					<div className="h-full bg-black bg-opacity-5 p-5">
+					<div className="h-full bg-black bg-opacity-5 p-2 lg:p-5">
 						<div className="grid grid-cols-12">
-							<div className="col-span-2">
+							<div className="col-span-1 hidden md:block lg:col-span-2">
 								<NavbarDashboardVertical />
 							</div>
-							<div className="col-span-10 px-3">
-								<NavbarDashboardHorizontal />
+							<div className="col-span-12 px-3 md:col-span-11 lg:col-span-10">
+								<div className="z-10">
+									<NavbarDashboardHorizontal />
+								</div>
 								<div>
 									<Routes>
 										<Route path="/" element={<AddActivity />} />
@@ -62,6 +64,9 @@ const Dashboard = () => {
 								</div>
 							</div>
 						</div>
+					</div>
+					<div className="fixed bottom-0 md:hidden">
+						<NavbarDashboardVertical />
 					</div>
 					<PlusIcon />
 				</div>

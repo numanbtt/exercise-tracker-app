@@ -1,38 +1,42 @@
 * {
 	font-family: Arial, Helvetica, sans-serif;
 }
+
 .custom-scrollbar::-webkit-scrollbar {
 	width: 0px;
+	height: 4px;
 	@apply rounded-full;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
 	width: 10px;
-	@apply rounded-full bg-opacity-80 bg-violet-600;
+	@apply rounded-full bg-violet-600 bg-opacity-80;
 }
 
 /* style for scrollbar track */
 .custom-scrollbar::-webkit-scrollbar-track {
-	@apply rounded-full bg-opacity-80 bg-white;
+	@apply rounded-full bg-white bg-opacity-80;
 }
+
 .smokeBG {
 	background-image: url("./smokebg.jpg");
 }
 .athletebg {
 	background-image: url("./athlete.jpg");
-	@apply bg-center bg-cover;
+	@apply bg-cover bg-center;
 }
 .numanbg {
 	background-image: url("../public/numan.jpg");
-	@apply bg-center bg-cover;
+	@apply bg-cover bg-center;
 }
 .bgimage {
 	background-image: url("./bg.jpg");
-	@apply bg-cover bg-center w-full;
+	@apply w-full bg-cover bg-center;
 }
 
 .aboutimage {
 	background-image: url("./about.png");
-	@apply bg-center bg-cover;
+	@apply bg-cover bg-center;
 }
 
 .dashboardbg {
@@ -40,14 +44,13 @@
 }
 .glassbg {
 	background-image: url("../public/glassbg.jpg");
-	@apply bg-center bg-cover;
+	@apply bg-cover bg-center;
 }
 
 @tailwind base;
 @tailwind components;
-
 .glassmorphism {
-	@apply bg-opacity-10 bg-clip-padding backdrop-blur-lg backdrop-filter bg-white;
+	@apply bg-white bg-opacity-10 bg-clip-padding backdrop-blur-lg backdrop-filter;
 }
 
 @tailwind utilities;

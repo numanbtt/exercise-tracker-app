@@ -24,6 +24,9 @@ const Login = () => {
 			});
 			if (response.status == 200) {
 				const responseData = await response.json();
+				// console.log(responseData.accessToken);
+				// console.log(responseData.id);
+				// console.log(responseData.name);
 				dispatch(getUserData(responseData));
 				// Move user to "/dashboard"
 				navigate("/dashboard/activities");
@@ -34,17 +37,17 @@ const Login = () => {
 		}
 	};
 	return (
-		<div className="h-screen flex justify-center items-center">
-			<div className="space-y-2  lg:w-[30%] md:w-[50%] sm:w-[70%] w-[80%]">
+		<div className="flex h-screen items-center justify-center">
+			<div className="w-[80%]  space-y-2 sm:w-[70%] md:w-[50%] lg:w-[30%]">
 				<img src="./blacklogo.png" alt="" className="w-16" />
-				<h2 className="font-semibold text-xl font-sans">
+				<h2 className="font-sans text-xl font-semibold">
 					Enter email and Password to login
 				</h2>
 				<label htmlFor="email"></label>
 				<input
 					type="text"
 					name="email"
-					className="form-input rounded-md w-full h-12"
+					className="form-input h-12 w-full rounded-md"
 					required
 					placeholder="Email"
 					onChange={loginHandler}
@@ -56,7 +59,7 @@ const Login = () => {
 				<input
 					type="password"
 					name="password"
-					className="form-input rounded-md w-full h-12"
+					className="form-input h-12 w-full rounded-md"
 					required
 					placeholder="Password"
 					onChange={loginHandler}
@@ -65,7 +68,7 @@ const Login = () => {
 				<br />
 				<div className="flex justify-center">
 					<button
-						className="px-7 rounded-md py-2 bg-black text-white"
+						className="rounded-md bg-black px-7 py-2 text-white"
 						onClick={checkUserLoginDetails}
 					>
 						Login

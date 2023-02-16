@@ -4,9 +4,6 @@ const BMIDetails = () => {
 	return (
 		<div>
 			<div className="space-y-5">
-				<h1 className="text-2xl font-semibold underline underline-offset-4">
-					BMI introduction
-				</h1>
 				<p className="leading-10">
 					BMI is a measurement of a person's leanness or corpulence based on
 					their height and weight, and is intended to quantify tissue mass. It
