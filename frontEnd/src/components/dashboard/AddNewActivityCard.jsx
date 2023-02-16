@@ -86,7 +86,7 @@ const AddNewActivityCard = () => {
 				<div className="h-full">
 					<div className="glassmorphism fixed top-0 left-0 bottom-0 right-0 h-screen bg-opacity-40">
 						<div className="fixed  top-0 left-0 bottom-0 right-0 flex h-full flex-row items-center justify-center">
-							<div className="min-h-[80vh] w-[30vw] rounded-lg bg-white shadow-2xl">
+							<div className="min-h-[80vh] w-[95vw] rounded-lg bg-white shadow-2xl sm:w-[70vw] md:w-[50vw] lg:w-[30vw]">
 								<div>
 									<img
 										src="../../mma.jpg"
@@ -97,7 +97,7 @@ const AddNewActivityCard = () => {
 								<div className="flex items-center justify-between py-2 px-5">
 									<h1 className="font-semibold">Select Activity</h1>
 									<select
-										className="w-48 rounded-sm"
+										className="w-32 rounded-sm sm:w-48"
 										onChange={handler}
 										value={handle.activity}
 										name="activity"
@@ -118,7 +118,7 @@ const AddNewActivityCard = () => {
 									<h1 className="font-semibold">Start Time</h1>
 									<input
 										type="time"
-										className="w-48 rounded-sm"
+										className="w-32 rounded-sm sm:w-48"
 										placeholder="minutes"
 										onChange={handler}
 										name="startTime"
@@ -132,7 +132,7 @@ const AddNewActivityCard = () => {
 									</div>
 									<input
 										type="number"
-										className="w-48 rounded-sm"
+										className="w-32 rounded-sm sm:w-48"
 										placeholder="minutes"
 										onChange={handler}
 										name="duration"
@@ -144,7 +144,7 @@ const AddNewActivityCard = () => {
 									<h1 className="font-semibold">Date</h1>
 									<input
 										type="date"
-										className="w-48 rounded-sm"
+										className="w-32 rounded-sm sm:w-48"
 										placeholder="minutes"
 										onChange={handler}
 										name="date"
@@ -197,131 +197,11 @@ const AddNewActivityCard = () => {
 										</button>
 									</div>
 								)}
-								{/* <div className="flex justify-center items-center space-x-5 my-2 mb-4">
-										<button
-											className="rounded-md text-lg py-2 px-5 text-center hover:scale-105 transition duration-300 border-2 border-black bg-black text-white"
-											onClick={() => {
-												handle.date === "" || handle.startTime === ""
-													? alert("Enter Complete Data")
-													: saveActivity();
-											}}
-										>
-											Add Activity
-										</button>
-										<button
-											className="rounded-md text-lg py-2 px-5 text-center hover:scale-105 transition duration-300 border-black text-black border-2"
-											onClick={() => {
-												dispatch(addActivityState());
-											}}
-										>
-											Cancel
-										</button>
-									</div> */}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			{/* )} */}
-			{/* To Update Data */}
-			{/* {isUpdating && (
-				<div>
-					<div className="h-full">
-						<div className="fixed top-0 left-0 bottom-0 right-0 h-screen glassmorphism bg-opacity-40">
-							<div className="h-full  flex flex-row justify-center items-center fixed top-0 left-0 bottom-0 right-0">
-								<div className="min-h-[80vh] w-[30vw] bg-white shadow-2xl rounded-lg">
-									<div>
-										<img
-											src="../../mma.jpg"
-											alt=""
-											className="object-cover object-center rounded-t-lg"
-										/>
-									</div>
-									<div className="py-2 px-5 flex justify-between items-center">
-										<h1 className="font-semibold">Select Activity</h1>
-										<select
-											className="w-48 rounded-sm"
-											onChange={handler}
-											value={handle.activity}
-											name="activity"
-										>
-											{activityOptions.map((element) => (
-												<option
-													className="bg-black hover:bg-blue-700 p-1 glassmorphism bg-opacity-75 rounded-md text-white"
-													key={element._id}
-													value={element.activity}
-												>
-													{element.activity}
-												</option>
-											))}
-										</select>
-									</div>
-									<hr />
-									<div className="py-2 px-5 flex justify-between items-center">
-										<h1 className="font-semibold">Start Time</h1>
-										<input
-											type="time"
-											className="w-48 rounded-sm"
-											placeholder="minutes"
-											onChange={handler}
-											name="startTime"
-											value={handle.startTime}
-										/>
-									</div>
-									<div className="py-2 px-5 flex justify-between items-center">
-										<div>
-											<h1 className="font-semibold text-center">Duration</h1>
-											<h1 className="text-sm text-center">(minutes)</h1>
-										</div>
-										<input
-											type="number"
-											className="w-48 rounded-sm"
-											placeholder="minutes"
-											onChange={handler}
-											name="duration"
-											value={handle.duration}
-										/>
-									</div>
-									<hr />
-									<div className="py-2 px-5 flex justify-between items-center">
-										<h1 className="font-semibold">Date</h1>
-										<input
-											type="date"
-											className="w-48 rounded-sm"
-											placeholder="minutes"
-											onChange={handler}
-											name="date"
-											value={handle.date}
-										/>
-									</div>
-
-									<div className="flex justify-center items-center space-x-5 my-2 mb-4">
-										<button
-											className="rounded-md text-lg py-2 px-5 text-center hover:scale-105 transition duration-300 border-2 border-black bg-black text-white"
-											onClick={() => {
-												handle.date === "" || handle.startTime === ""
-													? alert("Enter Complete Data")
-													: saveActivity();
-											}}
-										>
-											Update Activity
-										</button>
-										<button
-											className="rounded-md text-lg py-2 px-5 text-center hover:scale-105 transition duration-300 border-black text-black border-2"
-											onClick={() => {
-												// dispatch(addActivityState());
-												dispatch(setUpdateState());
-											}}
-										>
-											Cancel
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			)} */}
 		</>
 	);
 };
