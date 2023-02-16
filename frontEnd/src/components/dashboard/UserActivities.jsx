@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { AiOutlineTable } from "react-icons/ai";
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { addActivityState } from "../../redux/slices/AddActivityState.slice";
 import AddNewActivityCard from "./AddNewActivityCard";
 import { setUpdateState } from "../../redux/slices/userActivityUpdate.slice";
@@ -38,14 +38,10 @@ const UserActivities = () => {
 		await fetch(`http://127.0.0.1:4000/useractivities/${id}`, {
 			method: "Delete",
 		});
-		// getUserActivities();
+
 		dispatch(fetchTodos(userID));
 	};
 
-	// useEffect(() => {
-	// 	getUserActivities();
-	// 	dispatch(fetchTodos());
-	// }, [userActivities, userID]);
 	useEffect(() => {
 		dispatch(fetchTodos(userID));
 	}, [dispatch, userID, isOpen, isUpdating]);
@@ -54,9 +50,9 @@ const UserActivities = () => {
 		<>
 			<div className="m-2 flex items-center justify-center space-x-5 px-2 md:justify-end">
 				<div className="flex items-center justify-center space-x-3 ">
-					{/* <div>
-						<BsFillGrid3X3GapFill className="text-white text-xl" />
-					</div> */}
+					<div>
+						<BsFillGrid3X3GapFill className="text-xl text-white" />
+					</div>
 					<div>
 						<AiOutlineTable className="text-2xl text-white" />
 					</div>
@@ -65,7 +61,6 @@ const UserActivities = () => {
 					className="cursor-pointer rounded-lg bg-white px-5 py-2 font-semibold text-black transition duration-300 hover:scale-105"
 					onClick={() => {
 						dispatch(fetchTodos(userID));
-
 						dispatch(addActivityState());
 					}}
 				>
