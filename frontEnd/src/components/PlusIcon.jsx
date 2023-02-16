@@ -18,19 +18,19 @@ const PlusIcon = () => {
 		<>
 			{!plusIcon ? (
 				<div>
-					<div className="rounded-full shadow-black shadow-2xl w-fit cursor-pointer p-2 fixed bottom-0 right-0 m-4">
+					<div className="fixed bottom-0 right-0 m-4 hidden w-fit cursor-pointer rounded-full p-2 shadow-2xl shadow-black md:block">
 						<BsPlusLg
 							onClick={() => dispatch(plusIconState())}
-							className="font-light text-4xl rounded-full bg-white p-2 w-fit hover:scale-110 duration-300 transition"
+							className="w-fit rounded-full bg-white p-2 text-4xl font-light transition duration-300 hover:scale-110"
 						/>
 					</div>
 				</div>
 			) : (
 				<div>
-					<div className="fixed top-0 left-0 bottom-0 right-0 h-screen glassmorphism bg-opacity-40">
+					<div className="glassmorphism fixed top-0 left-0 bottom-0 right-0 h-screen bg-opacity-40">
 						<div className="h-screen">
-							<div className="h-screen flex flex-row justify-center items-center fixed top-0 left-0 bottom-0 right-0">
-								<div className="grid grid-cols-2 gap-10 w-[60vw]">
+							<div className="fixed top-0 left-0 bottom-0 right-0 flex h-screen flex-row items-center justify-center">
+								<div className="grid w-[60vw] grid-cols-2 gap-10">
 									<div
 										onClick={() => {
 											dispatch(plusIconState());
@@ -49,10 +49,10 @@ const PlusIcon = () => {
 									</div>
 								</div>
 							</div>
-							<div className="rounded-full shadow-black shadow-2xl w-fit cursor-pointer p-2 fixed bottom-0 right-0 m-4">
+							<div className="fixed bottom-0 right-0 m-4 w-fit cursor-pointer rounded-full p-2 shadow-2xl shadow-black">
 								<RxCross1
 									onClick={() => dispatch(plusIconState())}
-									className="font-extrabold text-4xl rounded-full bg-white p-2 w-fit hover:scale-110 duration-300 transition"
+									className="w-fit rounded-full bg-white p-2 text-4xl font-extrabold transition duration-300 hover:scale-110"
 								/>
 							</div>
 						</div>

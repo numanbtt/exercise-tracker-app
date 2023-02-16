@@ -36,9 +36,10 @@ const Signup = () => {
 			});
 			if (response.status == 200) {
 				const responseData = await response.json();
-				dispatch(getUserData(responseData));
+				alert(responseData.message);
+				// dispatch(getUserData(responseData));
 				// Move user to "/dashboard"
-				navigate("/dashboard/activities");
+				navigate("/login");
 			} else if (response.status == 400) {
 				const responseData = await response.json();
 				alert(responseData.message);
@@ -47,17 +48,17 @@ const Signup = () => {
 	};
 
 	return (
-		<div className="h-screen flex justify-center items-center">
-			<div className="space-y-2 lg:w-[30%] md:w-[50%] sm:w-[70%] w-[80%]">
+		<div className="flex h-screen items-center justify-center">
+			<div className="w-[80%] space-y-2 sm:w-[70%] md:w-[50%] lg:w-[30%]">
 				<img src="./blacklogo.png" alt="" className="w-16" />
-				<h2 className="font-semibold text-xl font-sans">
+				<h2 className="font-sans text-xl font-semibold">
 					Enter email and Password to Sign up
 				</h2>
 				<label htmlFor="name"></label>
 				<input
 					type="text"
 					name="name"
-					className="form-input rounded-md w-full h-12"
+					className="form-input h-12 w-full rounded-md"
 					required
 					value={signupHandle.name}
 					placeholder="Full Name"
@@ -69,7 +70,7 @@ const Signup = () => {
 					type="text"
 					name="username"
 					value={signupHandle.username}
-					className="form-input rounded-md w-full h-12"
+					className="form-input h-12 w-full rounded-md"
 					required
 					placeholder="User name"
 					onChange={signupHandler}
@@ -80,7 +81,7 @@ const Signup = () => {
 					type="text"
 					name="email"
 					value={signupHandle.email}
-					className="form-input rounded-md w-full h-12"
+					className="form-input h-12 w-full rounded-md"
 					required
 					placeholder="Email"
 					onChange={signupHandler}
@@ -91,7 +92,7 @@ const Signup = () => {
 				<input
 					type="password"
 					name="password"
-					className="form-input rounded-md w-full h-12"
+					className="form-input h-12 w-full rounded-md"
 					required
 					value={signupHandle.password}
 					placeholder="Password"
@@ -103,7 +104,7 @@ const Signup = () => {
 				<input
 					type="password"
 					name="confirmPassword"
-					className="form-input rounded-md w-full h-12"
+					className="form-input h-12 w-full rounded-md"
 					onChange={signupHandler}
 					required
 					value={signupHandle.confirmPassword}
@@ -112,18 +113,18 @@ const Signup = () => {
 				<br />
 				<h2>
 					By continuing, I agree to Fitlab’s{" "}
-					<a className="underline underline-offset-2 cursor-pointer">
+					<a className="cursor-pointer underline underline-offset-2">
 						Privacy Policy
 					</a>{" "}
 					and{" "}
-					<a className="underline underline-offset-2 cursor-pointer">
+					<a className="cursor-pointer underline underline-offset-2">
 						Terms of Use
 					</a>
 					.
 				</h2>
-				<div className="flex justify-center w-[100%]">
+				<div className="flex w-[100%] justify-center">
 					<button
-						className="px-7 w-[100%] rounded-md py-2 bg-black text-white"
+						className="w-[100%] rounded-md bg-black px-7 py-2 text-white"
 						onClick={saveUserDataInDatabase}
 					>
 						Sign Up

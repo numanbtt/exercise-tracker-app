@@ -2,6 +2,7 @@ const express = require("express");
 const route = express.Router();
 const userModel = require("../models/userModel");
 const userActivitiesModel = require("../models/userActivitiesModel");
+const verifyToken = require("./verifyToken");
 
 // Get all user activities
 route.get("/", async (req, res) => {
@@ -13,7 +14,21 @@ route.get("/", async (req, res) => {
 	}
 });
 
-// get all Activities of Specific User
+// get all Activities of Specific User with jwt
+// route.get("/:userid", verifyToken, async (req, res) => {
+// 	try {
+// 		const userActivities = await userActivitiesModel
+// 			.find({
+// 				user: req.params.userid,
+// 			})
+// 			.sort({ date: -1 });
+// 		res.send(userActivities);
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// });
+
+// get all Activities of Specific User without jwt
 route.get("/:userid", async (req, res) => {
 	try {
 		const userActivities = await userActivitiesModel

@@ -5,8 +5,27 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 require("dotenv/config");
 
+const multer = require("multer");
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "assets/");
+	},
+	filename: (req, file, cb) => {
+		cb(null, Date.now() + "." + file.mimetype.split("/")[1]);
+	},
+});
+const upload = multer({ storage });
+
 router.get("/", async (req, res) => {
 	const user = await userModel.find();
+	if (user.length != 0) {
+		res.json(user);
+	} else {
+		res.send("No user is registered at your website yet");
+	}
+});
+router.get("/:id", async (req, res) => {
+	const user = await userModel.findById(req.params.id);
 	if (user.length != 0) {
 		res.json(user);
 	} else {
@@ -27,11 +46,10 @@ router.post("/signup/", async (req, res) => {
 			const hashPassword = await bcrypt.hash(req.body.password, 10);
 			const user = await userModel({ ...req.body, password: hashPassword });
 			await user.save();
-			// const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-			// 	expiresIn: "15m",
-			// });
-			// res.json({ jwtToken: accessToken });
-			return res.status(200).send(user);
+
+			return res
+				.status(200)
+				.json({ message: "Your Account has been created. Kindly Login" });
 		} catch (error) {
 			console.log(error);
 		}
@@ -41,6 +59,41 @@ router.post("/signup/", async (req, res) => {
 	}
 });
 
+// Login with jwt functionality
+// router.post("/login/", async (req, res) => {
+// 	const findUser = await userModel.find({
+// 		email: req.body.email,
+// 		// password: req.body.password,
+// 	});
+// 	if (findUser.length !== 0) {
+// 		try {
+// 			if (await bcrypt.compare(req.body.password, findUser[0].password)) {
+// 				const user = await userModel.find({
+// 					email: req.body.email,
+// 					// password: req.body.password,
+// 				});
+// 				var accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+// 					expiresIn: "15m",
+// 				});
+// 				res.header("Authorization", accessToken).status(200).json({
+// 					accessToken: accessToken,
+// 					id: user[0]._id,
+// 					name: user[0].name,
+// 				});
+// 				// res.json({ jwtToken: accessToken });
+// 				// return res.status(200).json(...user);
+// 				// return res.status(200);
+// 			}
+// 		} catch (error) {
+// 			console.log(error);
+// 		}
+// 	} else {
+// 		console.log("user does not exist");
+// 		return res.status(400).json({ message: "user does not exist" });
+// 	}
+// });
+
+// login without jwt
 router.post("/login/", async (req, res) => {
 	const findUser = await userModel.find({
 		email: req.body.email,
@@ -53,6 +106,7 @@ router.post("/login/", async (req, res) => {
 					email: req.body.email,
 					// password: req.body.password,
 				});
+
 				return res.status(200).json(...user);
 				// return res.status(200);
 			}
@@ -74,33 +128,17 @@ router.delete("/:id", async (req, res) => {
 	}
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single("avatar"), async (req, res) => {
 	try {
+		const avatar = req.file.filename;
 		const user = await userModel.findByIdAndUpdate(req.params.id, {
-			$set: req.body,
+			$set: { avatar },
 		});
+		// user.save();
 		res.json(user);
 	} catch (error) {
 		console.log(error);
 	}
 });
-
-const authenticateToken = (req, res, next) => {
-	const authHeader = req.headers["authorization"];
-	const token = authHeader && authHeader.split(" ")[1];
-	// Bearer TOKEN
-	if (token == null) {
-		return res.sendStatus(401);
-	} else {
-		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-			if (err) {
-				return res.sendStatus(403);
-			} else {
-				req.user = user;
-				next();
-			}
-		});
-	}
-};
 
 module.exports = router;

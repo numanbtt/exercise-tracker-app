@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
 	},
 	avatar: {
 		type: String,
-		default: "default.webp",
+		default: "default.png",
 	},
 	date_created: {
 		type: Date,

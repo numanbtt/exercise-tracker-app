@@ -11,6 +11,7 @@ import { setUpdateState } from "../../redux/slices/userActivityUpdate.slice";
 const UserActivities = () => {
 	var isOpen = useSelector((state) => state.addActivityModal.isOpen);
 	var userID = useSelector((state) => state.userData.userID);
+	var accessToken = useSelector((state) => state.userData.accessToken);
 	var isUpdating = useSelector(
 		(state) => state.isUpdating.userActivityUpdateID
 	);
@@ -18,7 +19,12 @@ const UserActivities = () => {
 
 	const [userActivities, setUserActivities] = useState([]);
 	const getUserActivities = async () => {
-		var data = await fetch(`http://127.0.0.1:4000/useractivities/${userID}`);
+		var data = await fetch(
+			`http://127.0.0.1:4000/useractivities/${userID}`
+			// , {
+			// 	headers: { "auth-token": `bearer ${accessToken}` },
+			// }
+		);
 		data = await data.json();
 		setUserActivities(data);
 	};
@@ -37,17 +43,17 @@ const UserActivities = () => {
 
 	return (
 		<>
-			<div className="flex justify-end m-2 items-center space-x-5 px-2">
-				<div className="flex justify-center items-center space-x-3 ">
+			<div className="m-2 flex items-center justify-center space-x-5 px-2 md:justify-end">
+				<div className="flex items-center justify-center space-x-3 ">
 					{/* <div>
 						<BsFillGrid3X3GapFill className="text-white text-xl" />
 					</div> */}
 					<div>
-						<AiOutlineTable className="text-white text-2xl" />
+						<AiOutlineTable className="text-2xl text-white" />
 					</div>
 				</div>
 				<div
-					className="rounded-lg px-5 py-2 bg-white text-black cursor-pointer font-semibold hover:scale-105 transition duration-300"
+					className="cursor-pointer rounded-lg bg-white px-5 py-2 font-semibold text-black transition duration-300 hover:scale-105"
 					onClick={() => {
 						getUserActivities();
 						dispatch(addActivityState());
@@ -56,54 +62,66 @@ const UserActivities = () => {
 					Add Activity
 				</div>
 			</div>
-			<div className="flex flex-row justify-center w-full p-2">
-				<table className="table-auto glassmorphism bg-opacity-60">
-					<tbody>
-						<tr className="bg-white text-black bg-opacity-80 font-sans">
-							<th className="px-5 py-2 text-center">Activity</th>
-							<th className="px-5 py-2 text-center">Start Time</th>
-							<th className="px-5 py-2 text-center">Duration</th>
-							<th className="px-5 py-2 text-center">Date</th>
-							<th className="px-5 py-2 text-center">Calories Burn</th>
-							<th className="px-5 py-2 text-center"></th>
-						</tr>
-						{userActivities.map((element, index) => {
-							let date = new Date(element.date);
-							let dateString = date.toLocaleDateString("default", {
-								day: "numeric",
-								month: "short",
-								year: "numeric",
-							});
-							return (
-								<tr key={index} className=" text-gray-700">
-									<td className="px-5 py-2 text-center">{element.activity}</td>
-									<td className="px-5 py-2 text-center">{element.startTime}</td>
-									<td className="px-5 py-2 text-center">{element.duration}</td>
-									<td className="px-5 py-2 text-center">{dateString}</td>
-									<td className="px-5 py-2 text-center">{element.duration}</td>
-									<td className=" px-5 py-2 flex justify-center space-x-5 items-center">
-										<AiOutlineEdit
-											onClick={() => {
-												console.log("clicked");
-												dispatch(setUpdateState(`${element._id}`));
-											}}
-											className="text-black cursor-pointer hover:scale-110 duration-300 transition"
-										/>
-										<AiOutlineDelete
-											className="text-black cursor-pointer hover:scale-110 duration-300 transition"
-											onClick={() => {
-												deleteUserActivities(element._id);
-											}}
-										/>
-									</td>
-								</tr>
-							);
-						})}
-					</tbody>
-				</table>
+			<div className=" custom-scrollbar my-2 max-h-[65vh] overflow-y-scroll">
+				<div className=" flex w-full flex-row  justify-start md:justify-center">
+					<table className="glassmorphism my-2 max-h-[72vh]  bg-opacity-60">
+						<thead className="sticky top-0 bg-white bg-opacity-80 font-sans text-black">
+							<tr className="bg-white bg-opacity-80 font-sans text-black">
+								<th className="px-5 py-2 text-center">Activity</th>
+								<th className="px-5 py-2 text-center">Start Time</th>
+								<th className="px-5 py-2 text-center">Duration</th>
+								<th className="px-5 py-2 text-center">Date</th>
+								<th className="px-5 py-2 text-center">Calories Burn</th>
+								<th className="px-5 py-2 text-center">Edit/Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							{userActivities.map((element, index) => {
+								let date = new Date(element.date);
+								let dateString = date.toLocaleDateString("default", {
+									day: "numeric",
+									month: "short",
+									year: "numeric",
+								});
+								return (
+									<tr key={index} className=" text-gray-700">
+										<td className="px-5 py-2 text-center">
+											{element.activity}
+										</td>
+										<td className="px-5 py-2 text-center">
+											{element.startTime}
+										</td>
+										<td className="px-5 py-2 text-center">
+											{element.duration}
+										</td>
+										<td className="px-5 py-2 text-center">{dateString}</td>
+										<td className="px-5 py-2 text-center">
+											{element.duration}
+										</td>
+										<td className="flex h-full items-center justify-center space-x-5 px-5 py-2">
+											<AiOutlineEdit
+												onClick={() => {
+													console.log("clicked");
+													dispatch(setUpdateState(`${element._id}`));
+												}}
+												className="cursor-pointer text-black transition duration-300 hover:scale-110"
+											/>
+											<AiOutlineDelete
+												className="cursor-pointer text-black transition duration-300 hover:scale-110"
+												onClick={() => {
+													deleteUserActivities(element._id);
+												}}
+											/>
+										</td>
+									</tr>
+								);
+							})}
+						</tbody>
+					</table>
+				</div>
+				{isOpen && <AddNewActivityCard />}
+				{isUpdating && <AddNewActivityCard />}
 			</div>
-			{isOpen && <AddNewActivityCard />}
-			{isUpdating && <AddNewActivityCard />}
 		</>
 	);
 };
