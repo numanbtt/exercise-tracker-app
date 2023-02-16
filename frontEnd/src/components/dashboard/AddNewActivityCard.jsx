@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addActivityState } from "../../redux/slices/AddActivityState.slice";
 import { setUpdateState } from "../../redux/slices/userActivityUpdate.slice";
+import { fetchTodos } from "../../redux/slices/userData.slice";
 
 const AddNewActivityCard = () => {
 	// To check whether Add new card option is open or not
@@ -73,9 +74,10 @@ const AddNewActivityCard = () => {
 
 	useEffect(() => {
 		// console.log(isUpdating);
+		dispatch(fetchTodos(userID));
 		getUpdateActivity();
 		fetchActivities();
-	}, [isOpen]);
+	}, [isOpen, dispatch]);
 
 	return (
 		<>

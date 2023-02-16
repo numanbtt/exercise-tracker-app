@@ -7,6 +7,7 @@ const Activities = () => {
 	var userID = useSelector((state) => state.userData.userID);
 	var dispatch = useDispatch();
 	const [userActivities, setUserActivities] = useState([]);
+
 	const getUserActivities = async () => {
 		var data = await fetch(`http://127.0.0.1:4000/useractivities/${userID}`);
 		data = await data.json();
@@ -15,7 +16,7 @@ const Activities = () => {
 
 	useEffect(() => {
 		getUserActivities();
-	}, [userActivities]);
+	}, []);
 
 	return (
 		<>
