@@ -109,13 +109,13 @@ router.post("/login/", async (req, res) => {
 
 				return res.status(200).json(...user);
 				// return res.status(200);
+			} else {
+				console.log("user does not exist");
+				return res.status(400).json({ message: "user does not exist" });
 			}
 		} catch (error) {
 			console.log(error);
 		}
-	} else {
-		console.log("user does not exist");
-		return res.status(400).json({ message: "user does not exist" });
 	}
 });
 

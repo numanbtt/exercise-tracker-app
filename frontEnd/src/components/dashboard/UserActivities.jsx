@@ -7,17 +7,21 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { addActivityState } from "../../redux/slices/AddActivityState.slice";
 import AddNewActivityCard from "./AddNewActivityCard";
 import { setUpdateState } from "../../redux/slices/userActivityUpdate.slice";
+import { fetchTodos } from "../../redux/slices/userData.slice";
 
 const UserActivities = () => {
 	var isOpen = useSelector((state) => state.addActivityModal.isOpen);
 	var userID = useSelector((state) => state.userData.userID);
+	var userActivities = useSelector(
+		(state) => state.userData.userActivitiesState
+	);
 	// var accessToken = useSelector((state) => state.userData.accessToken);
 	var isUpdating = useSelector(
 		(state) => state.isUpdating.userActivityUpdateID
 	);
 	var dispatch = useDispatch();
-
-	const [userActivities, setUserActivities] = useState([]);
+	console.log(userID);
+	// const [userActivities, setUserActivities] = useState([]);
 
 	// const getUserActivities = async (userID) => {
 	// 	const data1 = await fetch(
@@ -30,26 +34,21 @@ const UserActivities = () => {
 	// 	setUserActivities(data);
 	// };
 
-	const getUserActivities = () => {
-		fetch(`http://127.0.0.1:4000/useractivities/${userID}`)
-			.then((data) => {
-				return data.json();
-			})
-			.then((data) => {
-				setUserActivities(data);
-			});
-	};
-
 	const deleteUserActivities = async (id) => {
 		await fetch(`http://127.0.0.1:4000/useractivities/${id}`, {
 			method: "Delete",
 		});
-		getUserActivities();
+		// getUserActivities();
+		dispatch(fetchTodos(userID));
 	};
 
+	// useEffect(() => {
+	// 	getUserActivities();
+	// 	dispatch(fetchTodos());
+	// }, [userActivities, userID]);
 	useEffect(() => {
-		getUserActivities();
-	}, [userID]);
+		dispatch(fetchTodos(userID));
+	}, [dispatch, userID, isOpen, isUpdating]);
 
 	return (
 		<>
@@ -65,7 +64,8 @@ const UserActivities = () => {
 				<div
 					className="cursor-pointer rounded-lg bg-white px-5 py-2 font-semibold text-black transition duration-300 hover:scale-105"
 					onClick={() => {
-						getUserActivities();
+						dispatch(fetchTodos(userID));
+
 						dispatch(addActivityState());
 					}}
 				>

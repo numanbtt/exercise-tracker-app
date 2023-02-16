@@ -32,6 +32,7 @@ const Login = () => {
 				navigate("/dashboard/activities");
 			} else if (response.status == 400) {
 				const responseData = await response.json();
+				console.log(responseData.message);
 				alert(responseData.message);
 			}
 		}
